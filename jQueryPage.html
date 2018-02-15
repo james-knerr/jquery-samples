@@ -1,0 +1,41 @@
+<html>
+   <head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+      <script type="text/javascript">
+          window.onload = function() {
+             //alert('Window loaded');
+          };
+
+          $(document).ready(function() {
+            $('#hoverMe').hover(
+              function(e) {
+                //console.log($(this));
+                $(this).css('background-color', '#00FF99');
+                //$(this).text('Mouse X: ' + e.pageX + ', Mouse Y: ' + e.pageY);
+                
+            },
+              function(e) {
+                $(this).css('background-color', 'lightgreen');
+                let objectMinX = $(this)[0].offsetLeft;
+                let objectMaxX = $(this)[0].offsetWidth + $(this)[0].offsetLeft;
+                let objectMinY = $(this)[0].offsetTop;
+                let objectMaxY = $(this)[0].offsetHeight + $(this)[0].offsetTop;
+                if (e.pageX < objectMinX || e.pageX > objectMaxX) {
+                  $(this).text('Mouse moved out from ' + (e.pageX < objectMinX ? 'left edge' : 'right edge'));
+                } else {
+                  $(this).text('Mouse moved out from ' + (e.pageY < objectMinY ? 'top edge' : 'bottom edge'));
+                }
+                //$(this).text('Mouse X: ' + e.pageX + ', Mouse Y: ' + e.pageY);
+            });
+          });
+      </script>
+   </head>
+   <body>
+  <div style="width: 700px; height: 500px; background-color: #ebebeb; display: flex; align-content: center; justify-content: center;">
+    <div id="hoverMe" style="width: 50%; height: 50%; background-color: lightgreen; align-self: center; display: flex; flex-direction: column; align-content: center; justify-content: center; text-align: center;">
+      Hover Over Me!
+    </div>
+  </div>
+   </body>
+</html>
